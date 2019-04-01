@@ -150,4 +150,9 @@ class MyLinkedList{
       other.end = null; //The other list should be empty now
     }
   }
+  public void clear() {
+    size = 0;
+    start = null;
+    end = null;
+  }
 }
