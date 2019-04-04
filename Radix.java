@@ -12,8 +12,15 @@ public class Radix {
       }
     }
     max = (int)Math.log10(max) + 1; //Get the total number of digits for the maximum value.
-    int index = 0; //This will go through the place values.
-    
+    MyLinkedList<Integer> temp = new MyLinkedList<>(); //List of temporary values.
+    for (int i = 0; i < data.length; i = i + 1) {
+      if (data[i] % 10 >= 0) { //Positive number.
+        buckets[10 + data[i] % 10].add(data[i]);
+      } else { //Negative number.
+        buckets[9] + data[i] % 10].add(data[i]);
+      }
+    }
+    int index = 1; //This will go through the place values.
     while (index < max) {
 
     }
