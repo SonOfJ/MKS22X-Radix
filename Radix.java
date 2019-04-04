@@ -18,9 +18,9 @@ public class Radix {
       if (index == 0) { //Ones place.
         for (int i = 0; i < data.length; i = i + 1) {
           if (data[i] % 10 >= 0) { //Positive number.
-            buckets[10 + data[i] % 10].add(data[i]);
+            buckets[10 + data[i] % 10].add(data[i]); //Put it in between 10 and 19.
           } else { //Negative number.
-            buckets[9] + data[i] % 10].add(data[i]);
+            buckets[9] + data[i] % 10].add(data[i]); //Put it in between 0 and 9.
           }
         }
       } else {
@@ -29,7 +29,7 @@ public class Radix {
           if ((int)(value / Math.pow(10, index)) % 10 >= 0) { //If the digit is positive...
             buckets[10 + (int)(value / Math.pow(10, index)) % 10].add(value); //Put it between 10 and 19.
           } else { //If the digit is negative...
-            buckets[9 + (int)(value / Math.pow(10, index)) % 10].add(value);
+            buckets[9 + (int)(value / Math.pow(10, index)) % 10].add(value); //Put it between 0 and 9.
           }
         }
       }
