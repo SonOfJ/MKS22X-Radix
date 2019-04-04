@@ -1,7 +1,8 @@
 import java.util.*;
 public class MyLinkedList<E> {
   private int size;
-  private Node start,end;
+  private Node start;
+  private Node end;
   public MyLinkedList() {
   }
   public int size() {
@@ -25,22 +26,20 @@ public class MyLinkedList<E> {
     start = null;
     end = null;
   }
-  public boolean add(E value) {
+  public void add(E value) {
     if (size == 0) { //If the list is only supposed to have one element.
       Node element = new Node(value, null, null); //There can be no previous or next elements.
       size = size + 1; //The size goes from zero to one.
       start = element; //The first node would be the element.
       end = element; //The last node would also be the element.
-      return true; //This is a boolean function.
     } else { //What if the list were to have more than one element.
       Node element = new Node(value, null, end); //The is no next element but the previous element would be the old last element.
       size = size + 1; //Increase the size.
       end.setNext(element); //Change the constructor of the old last element.
       end = element; //New last element.
-      return true; //This is a boolean function.
     }
   }
-  public void add(int index, E value) {
+  public void add(int index, Node<E> value) {
     if (size == 0 && index != 0 || size != 0 && index > size || index < 0) { //Invalid input for index.
       throw new IndexOutOfBoundsException("Index is out of bounds.");
     }
@@ -86,19 +85,19 @@ public class MyLinkedList<E> {
       other.end = null; //The other list should be empty now.
     }
   }
-  private Node getNthNode(int n) { //Helper function.
+  private Node<E> getNthNode(int n) { //Helper function.
     Node index = start;
     for(int i = 0; i < n; i = i + 1) { //Goes through the list until hitting n.
       index = index.next();
     }
     return index; //Returns the desired node.
   }
-  public E removeFront() {
+  public Node<E> removeFront() {
     if (size() == 0) {
       throw new NoSuchElementException("The list is empty.");
     }
     if (size == 1) {
-      E hold = start.getData();
+      Node<E> hold = start.getData();
       clear();
       return hold;
     }
@@ -107,37 +106,7 @@ public class MyLinkedList<E> {
     size = size - 1;
     return start.getData();
   }
-  private class Node {
-    private E data;
-    private Node next,prev;
-    public Node (E newData, Node newNext, Node newPrev) {
-      data = newData;
-      next = newNext;
-      prev = newPrev;
-    }
-    public E getData() {
-      return data;
-    }
-    public Node next() {
-      return next;
-    }
-    public Node prev() {
-      return prev;
-    }
-    public E setData(E i) {
-      E K = data;
-      data = i;
-      return K;
-    }
-    public void setNext(Node other) {
-      next = other;
-    }
-    public void setPrev(Node other) {
-      prev = other;
-    }
-    public String toString() {
-      String K = "" + data;
-      return K;
-    }
+  public Node<E> start() {
+    return start;
   }
 }
