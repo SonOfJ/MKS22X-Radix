@@ -7,7 +7,7 @@ public class Node<E> {
     next = newNext;
     prev = newPrev;
   }
-  public Node<E> getData() {
+  public E getData() {
     return data;
   }
   public Node<E> next() {
