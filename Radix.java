@@ -1,11 +1,11 @@
+@SuppressWarnings({"unchecked", "rawtypes"})
 public class Radix {
   public static void radixsort(int[] data) {
-    @SuppressWarnings("unchecked")
     MyLinkedList<Integer>[] buckets = new MyLinkedList[20];
     for (int i = 0; i < 20; i = i + 1) {
-      buckets[i] = new MyLinkedList<>();
+      buckets[i] = new MyLinkedList<Integer>();
     }
-    MyLinkedList<Integer> temp = new MyLinkedList<>(); //List of temporary values.
+    MyLinkedList<Integer> temp = new MyLinkedList<Integer>(); //List of temporary values.
     int max = data[0]; //Variable that points to the highest value in a list.
     for (int i = 0; i < data.length; i = i + 1) { //Find the max value.
       if (data[i] > max) {
@@ -14,16 +14,17 @@ public class Radix {
     }
     String digits = "" + max;
     int runs = digits.length() - 1; //Number of passes needed.
-    for (int i = 0; i < runs; i = i + 1) {
+    for (int i = 0; i <= runs; i = i + 1) {
       if (i == 0) { //First value.
         for (int j = 0; j < data.length; j = j + 1) {
-          buckets[data[i] % 10 + 9].add(data[i]);
+          buckets[data[j] % 10 + 9].add(data[j]);
         }
       } else {
-        buckets[temp.start().getData() / Math.pow(10, i) % 10].add(temp.start().getData());
-        while (temp.start().hasNext()) {
-          temp.start() = temp.start().next();
-          buckets[temp.start().getData() / Math.pow(10, i) % 10].add(temp.start().getData());
+        Node<Integer> value = temp.start();
+        buckets[value.getData() / (int)Math.pow(10, i) % 10].add(value.getData());
+        while (value.hasNext()) {
+          value = value.next();
+          buckets[value.getData() / (int)Math.pow(10, i) % 10].add(value.getData());
         }
       }
       temp.clear();
@@ -31,12 +32,13 @@ public class Radix {
         temp.extend(buckets[j]);
       }
     }
-    data[0] = temp.start().getData();
+    Node<Integer> value = temp.start();
+    data[0] = value.getData();
     int index = 1;
-    while (temp.start().hasNext()) {
-      temp.start() = temp.start().next();
-      data[i] = temp.start().getData();
-      i = i + 1;
+    while (value.hasNext()) {
+      value = value.next();
+      data[index] = value.getData();
+      index = index + 1;
     }
   }
 }

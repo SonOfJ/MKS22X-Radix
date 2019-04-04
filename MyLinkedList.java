@@ -92,20 +92,6 @@ public class MyLinkedList<E> {
     }
     return index; //Returns the desired node.
   }
-  public E removeFront() {
-    if (size() == 0) {
-      throw new NoSuchElementException("The list is empty.");
-    }
-    if (size == 1) {
-      E hold = start.getData();
-      clear();
-      return hold;
-    }
-    start = start.next();
-    start.setPrev(null);
-    size = size - 1;
-    return start.getData();
-  }
   public Node<E> start() {
     return start;
   }
