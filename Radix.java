@@ -1,3 +1,4 @@
+import java.util.*;
 public class Radix {
   public static void radixsort(int[] data) {
     @SuppressWarnings("unchecked")
@@ -20,12 +21,12 @@ public class Radix {
           if (data[i] % 10 >= 0) { //Positive number.
             buckets[10 + data[i] % 10].add(data[i]); //Put it in between 10 and 19.
           } else { //Negative number.
-            buckets[9] + data[i] % 10].add(data[i]); //Put it in between 0 and 9.
+            buckets[9 + data[i] % 10].add(data[i]); //Put it in between 0 and 9.
           }
         }
       } else {
         while (temp.size() > 0) { //There is something in the linked list.
-          int value = temp.removeFront()
+          int value = temp.removeFront();
           if ((int)(value / Math.pow(10, index)) % 10 >= 0) { //If the digit is positive...
             buckets[10 + (int)(value / Math.pow(10, index)) % 10].add(value); //Put it between 10 and 19.
           } else { //If the digit is negative...
@@ -34,7 +35,7 @@ public class Radix {
         }
       }
       for (int i = 0; i < 20; i = i + 1) {
-        temp.extend[buckets[i]]; //Add on the buckets.
+        temp.extend(buckets[i]); //Add on the buckets.
       }
       index = index + 1; //Make sure the place index keeps moving.
     }
