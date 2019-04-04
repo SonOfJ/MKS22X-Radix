@@ -25,11 +25,11 @@ public class Radix {
         }
       } else {
         while (temp.size() > 0) { //There is something in the linked list.
-          int 
-          if ((int)(temp.removeFront() / Math.pow(10, index)) % 10 >= 0) { //If the digit is positive...
-            buckets[10 + (int)(temp.removeFront() / Math.pow(10, index))].add(data.removeFront()); //Put it between 10 and 19.
+          int value = temp.removeFront()
+          if ((int)(value / Math.pow(10, index)) % 10 >= 0) { //If the digit is positive...
+            buckets[10 + (int)(value / Math.pow(10, index)) % 10].add(value); //Put it between 10 and 19.
           } else { //If the digit is negative...
-            buckets[9 + (int)(temp.removeFront() / Math)]
+            buckets[9 + (int)(value / Math.pow(10, index)) % 10].add(value);
           }
         }
       }
