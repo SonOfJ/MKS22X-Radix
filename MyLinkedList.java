@@ -39,7 +39,7 @@ public class MyLinkedList<E> {
       end = element; //New last element.
     }
   }
-  public void add(int index, Node<E> value) {
+  public void add(int index, E value) {
     if (size == 0 && index != 0 || size != 0 && index > size || index < 0) { //Invalid input for index.
       throw new IndexOutOfBoundsException("Index is out of bounds.");
     }
@@ -85,14 +85,68 @@ public class MyLinkedList<E> {
       other.end = null; //The other list should be empty now.
     }
   }
-  private Node<E> getNthNode(int n) { //Helper function.
+  private Node getNthNode(int n) { //Helper function.
     Node index = start;
     for(int i = 0; i < n; i = i + 1) { //Goes through the list until hitting n.
       index = index.next();
     }
     return index; //Returns the desired node.
   }
-  public Node<E> start() {
+  public Node start() {
     return start;
   }
-}
+  public E removeFront() {
+    if (size == 0) {
+      throw new NoSuchElementException();
+    }
+    E value = start.getData();
+    if (size = 1) {
+      clear();
+      return value;
+    }
+    start = start.next();
+    start.setPrev(null);
+    size = size - 1;
+    return value;
+  }
+  private class Node {
+    private E data;
+    private Node next;
+    private Node prev;
+    public Node (E newData, Node newNext, Node newPrev) {
+      data = newData;
+      next = newNext;
+      prev = newPrev;
+    }
+    public E getData() {
+      return data;
+    }
+    public Node next() {
+      return next;
+    }
+    public Node prev() {
+      return prev;
+    }
+    public E setData(E i) {
+      E K = data;
+      data = i;
+      return K;
+    }
+    public void setNext(Node other) {
+      next = other;
+    }
+    public void setPrev(Node other) {
+      prev = other;
+    }
+    public String toString() {
+      String K = "" + data;
+      return K;
+    }
+    public boolean hasNext() {
+      if (next == null) {
+        return false;
+      }
+      return true;
+    }
+  }
+   }
