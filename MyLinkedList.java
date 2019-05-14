@@ -100,7 +100,7 @@ public class MyLinkedList<E> {
       throw new NoSuchElementException();
     }
     E value = start.getData();
-    if (size = 1) {
+    if (size == 1) {
       clear();
       return value;
     }
